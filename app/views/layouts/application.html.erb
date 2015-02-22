@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ecommerce</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+
+
+</head>
+<body>
+
+
+<!-- Navigation -->
+
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/products">MUXIC</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Products <span class="sr-only">(current)</span></a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sort By <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/products/random">Random</a></li>
+            <li><a href="/products?sort=price_low_to_high">Price low to high</a></li>
+            <li><a href="/products?sort=price_high_to_low">Price high to low</a></li>
+          </ul>
+        </li>
+        <li class="categories">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/products?category=kitchen">Kitchen</a></li>
+            <li><a href="/products?category=bedroom">Bedroom</a></li>
+            <li><a href="/products?category=livingroom">Livingroom</a></li>
+          </ul>
+        </li>
+      </ul>
+      <%= form_tag '/products', :method => :get, :class => "navbar-form navbar-left" do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag "Search", :class => "btn btn-default btn-search" %>
+      <% end %>  
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/products?sort=price">Discounted Products </a></li>
+        <% if current_user %>
+          <li><a href="/users/sign_out"> Sign Out </a></li>
+        <% else %>
+        <li><a href="/users/sign_in">Login </a></li>
+        <li><a href="/users/sign_up">Sign up </a></li>
+        <% end %>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- Begin Syicky footer -->
+<div id="container">
+  <!-- Content -->
+	<div id="body">
+    <div class="container content">
+
+      <% flash.each do |name, message| %>
+          <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <%= message %>
+          </div>
+      <% end %>
+
+
+
+
+		  <%= yield %>
+    </div>
+  </div>
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container">
+      <div class="row">
+        <ul class="col-md-2 col-sm-2 footer-list">
+          <li><a href="">item 1</a></li>
+          <li><a href="">item 1</a></li>
+          <li><a href="">item 1</a></li>
+        </ul>
+        <ul class="col-md-2 col-sm-2 footer-list">
+          <li><a href="">item 1</a></li>
+          <li><a href="">item 1</a></li>
+          <li><a href="">item 1</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> <!-- End sticky footer -->
+
+
+</body>
+</html>

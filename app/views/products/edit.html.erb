@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="well"
+
+			<h1> Edit your product  </h1>
+				<%=form_tag("/products/#{@product.id}", :method => :patch) do %>
+				<div class="control-group">				
+					<%=label_tag :title%>
+					<div class="controls">
+					<%=text_field_tag :title, @product.title %>
+					</div>
+				</div>
+
+					<%=label_tag :image%>
+					<%=text_field_tag :image%>
+		 
+					<%=label_tag :price%>
+					<%=text_field_tag :price, @product.price%>
+
+					<%=label_tag :description%>
+					<%=text_field_tag :description, @product.description%>
+
+					<%=label_tag :category%>
+					<%=text_field_tag :category, @product.category%>
+
+					<%=label_tag :brand%>
+					<%=text_field_tag :brand, @product.brand%>
+
+					<%=submit_tag "Add"%>
+				<%end%>
+		</div>
+	</div>
+</div>
