@@ -55,6 +55,13 @@ gem 'seed_dump'
 
 gem 'devise'
 
+# Installing Heorku - refer to cheat sheet
+
+gem 'pg', group: :production
+
+gem 'rails_12factor', group: :production
+
+
 
 
 
