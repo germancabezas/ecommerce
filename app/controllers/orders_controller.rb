@@ -1,17 +1,31 @@
 class OrdersController < ApplicationController
 
-	def create
-		product = Product.find(params[:product_id])
-		quantity = params[:quantity].to_i 
-		order = Order.new(:user_id => current_user.id, :quantity => quantity, :product_id => product.id)
-		order.subtotal = order.calculate_subtotal
-		order.tax = order.calculate_tax
-		order.total = order.calculate_total
-		order.save
+	def update
+	    order = Order.find(params[:id])
+	    # order = Order.find_by(:user_id => current_user.id, :status => "carted")
+	    
+	    # code for charging credit card goes here
 
-		flash[:success] = "Your item has been added has been added" # flash => [:success = "message"]  "The :success is calling the bootstrap class for alert so whatever you put after flash[] can be any of the 4 available classes like flash[:info], flash[:success], etc"
-		redirect_to '/products'
+	    order.update(:status => "purchased")
 
+	    flash[:success] = "Thanks for shopping!"
+	    redirect_to "/products"
 	end
 
 end
+
+
+
+# Code to only add to the order and but this is not how we purchase it
+
+# @product = Product.find(params[:product_id])
+# 		quantity = params[:quantity].to_i 
+# 		order = Order.new(:user_id => current_user.id, :status => "carted")
+
+
+# 		order.subtotal = order.calculate_subtotal
+# 		order.tax = order.calculate_tax
+# 		order.total = order.calculate_total
+# 		order.save
+
+

@@ -43,9 +43,9 @@
         <li class="categories">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="/products?category=kitchen">Kitchen</a></li>
-            <li><a href="/products?category=bedroom">Bedroom</a></li>
-            <li><a href="/products?category=livingroom">Livingroom</a></li>
+            <% Category.all.each do |category| %>
+            <li><a href="/products?category=<%= category.name %>"><%= category.name %></a></li>
+            <% end %>
           </ul>
         </li>
       </ul>

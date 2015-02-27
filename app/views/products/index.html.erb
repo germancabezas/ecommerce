@@ -22,7 +22,10 @@
             <div class="well well-sm block-text">
       				<a href="/products/<%=product.id%>"><h5><%=product.title%></h5> </a>
       				<h5><%=number_to_currency(product.price)%></h5>
-      				<%=product.category%>
+      				<% product.categories.each do |category| %>
+              <h5><%=category.name%> </h5>
+              <% end %>
+
       				<%=product.brand%>
       				<%=product.description%>
             </div>

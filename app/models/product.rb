@@ -4,6 +4,15 @@ class Product < ActiveRecord::Base
 	has_many :product_options
 	belongs_to :user
 	has_many :images
+	has_many :categorized_products
+	has_many :categories, :through => :categorized_products
+	#cart
+	has_many :carted_product
+	has_many :orders, :through => :carted_products
+	#validations
+	validates :price, presence: true
+
+
 
 	def discounted_price
 	if price <= 2

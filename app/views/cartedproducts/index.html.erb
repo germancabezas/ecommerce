@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-6">
+		<h1>Shopping Cart</h1>
+		<% @carted_products.each do |carted_product| %>
+		  <h3><%= carted_product.product.title %></h3>
+		  <img src="<%= carted_product.product.image %>">
+		  <h4>Quantity: <%= carted_product.quantity %></h4>
+		<% end %>
+
+		<%= form_tag "/orders/#{@order.id}", :method => :patch do %>
+		  <%= submit_tag "Complete Purchase!" %>
+		<% end %>
+	</div>
+</div>
+
+

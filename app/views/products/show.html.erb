@@ -12,9 +12,9 @@
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		  <!-- Indicators -->
 		  <ol class="carousel-indicators">
-		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="0"> <img class="test" src="<%=@product.image%>" alt="..."></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="1"><img class="test" src="<%=@product.image%>" alt="..."></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="2"><img class="test" src="<%=@product.image%>" alt="..."></li>
 		  </ol>
 
 		  <!-- Wrapper for slides -->
@@ -66,20 +66,30 @@
 				</ul>
 			<% end %>
 			<div>
-			<a class="btn btn-default btn-sm" href="/products/<%= @product.id %>/edit"> Edit </a>
-			<a class="btn btn-default btn-sm" href="/products/<%= @product.id %>" data-method="delete" rel="nofollow" data-confirm="Are you sure?"> Delete </a>
 
-			<%=form_tag'/orders' do%>
-				<%=label_tag :quantity %>
-				<%=text_field_tag :quantity %> 
-				<%=hidden_field_tag :product_id, @product.id %> 
-				<%=submit_tag "Order Now"%>
-			<%end%>
+			<% if user_signed_in? && current_user.admin %>	
+				<a class="btn btn-default btn-sm" href="/products/<%= @product.id %>/edit"> Edit </a>
+				<a class="btn btn-default btn-sm" href="/products/<%= @product.id %>" data-method="delete" rel="nofollow" data-confirm="Are you sure?"> Delete </a>
+			<% end %>
+
+
+
+			<% if user_signed_in? %>	
+				<%=form_tag'/cartedproducts' do%>
+					<%=label_tag :quantity %>
+					<%=text_field_tag :quantity %> 
+					<%=hidden_field_tag :product_id, @product.id %> 
+					<%=submit_tag "Order Now"%>
+				<%end%>
+			<% end %>
 
 			</div>
 		</div>
 	</div>
 </div> 
+
+
+
 
 
 
