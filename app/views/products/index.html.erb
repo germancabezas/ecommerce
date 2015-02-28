@@ -19,15 +19,13 @@
             <a href="/products/<%=product.id%>">
             <img class="img-home" src="<%=product.image%>">
             </a>
-            <div class="well well-sm block-text">
+            <div class="well well-sm product-grid-item">
       				<a href="/products/<%=product.id%>"><h5><%=product.title%></h5> </a>
       				<h5><%=number_to_currency(product.price)%></h5>
       				<% product.categories.each do |category| %>
               <h5><%=category.name%> </h5>
               <% end %>
-
-      				<%=product.brand%>
-      				<%=product.description%>
+      				<h5><%=product.brand%></h5>
             </div>
           </div>	
   			</div>

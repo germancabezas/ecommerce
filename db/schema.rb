@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227004855) do
+ActiveRecord::Schema.define(version: 20150227185052) do
 
   create_table "carted_products", force: :cascade do |t|
     t.integer  "product_id", limit: 4
     t.integer  "order_id",   limit: 4
     t.integer  "quantity",   limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -30,19 +30,15 @@ ActiveRecord::Schema.define(version: 20150227004855) do
   create_table "categorized_products", force: :cascade do |t|
     t.integer  "product_id",  limit: 4
     t.integer  "category_id", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.string   "image_url",  limit: 255
+    t.string   "string",     limit: 255
     t.integer  "product_id", limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "option_products", force: :cascade do |t|
-    t.string   "name",       limit: 255
+    t.string   "integer",    limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
@@ -66,9 +62,9 @@ ActiveRecord::Schema.define(version: 20150227004855) do
 
   create_table "product_options", force: :cascade do |t|
     t.string   "name",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.integer  "product_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -76,8 +72,8 @@ ActiveRecord::Schema.define(version: 20150227004855) do
     t.string   "title",       limit: 255
     t.text     "description", limit: 65535
     t.string   "brand",       limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "vendor_id",   limit: 4
     t.string   "image",       limit: 255
   end
@@ -102,8 +98,8 @@ ActiveRecord::Schema.define(version: 20150227004855) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "vendors", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "name",       limit: 255
     t.string   "email",      limit: 255
     t.string   "phone",      limit: 255
